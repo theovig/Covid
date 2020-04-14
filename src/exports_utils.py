@@ -77,14 +77,14 @@ def explore():
         if f[:20] == "indicateurs_sivic_es":
             if os.path.isfile(os.path.join(EXPORTS_PATH, f)) and f[-5:] == ".xlsx":
                 result_es += [(f, extract_path_date(EXPORTS_PATH,f))]
-        if f[9:13] == "Lits":
+        if "Lits" in f:
             if os.path.isfile(os.path.join(EXPORTS_PATH, f)) and f[-5:] == ".xlsx":
                 results_bed += [(f, extract_path_date(EXPORTS_PATH,f))]
         #if = ESMS:
-        if f[:4]=="Funé":
+        if "Funé" in f:
             if os.path.isfile(os.path.join(EXPORTS_PATH, f)) and f[-5:] == ".xlsx":
                 results_housses += [(f, extract_path_date(EXPORTS_PATH,f))]
-        if f[:6]=="Export":
+        if "Export" in f:
             if os.path.isfile(os.path.join(EXPORTS_PATH, f)) and f[-4:] == ".xls":
                 results_sivic += [(f, extract_path_date(EXPORTS_PATH,f))]
 

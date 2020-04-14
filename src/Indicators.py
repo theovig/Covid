@@ -119,7 +119,6 @@ class Indicators():
 
 
     def compute_fune_housses(self):
-        print(self.df_housses.columns)
         self.df_housses=self.df_housses.rename(columns={"Unnamed: 8": "ESMS", "Unnamed: 9": "TOTAL DPT","Unnamed: 10":"AP-HP","Unnamed: 11":"Hors AP-HP", "Unnamed: 12":"ESMS.1", "Unnamed: 13": "TOTAL_ES", "Unnamed: 14":"TOTAL DPT.1"})
         self.d["CH_MORTU_TOT"]=str(int(self.df_housses.at["TOTAL REG", "TOTAL DPT"]))
         self.d["CH_MORTU_ESMS"] = str(int(self.df_housses.at["TOTAL", "ESMS"]))

@@ -150,13 +150,7 @@ class Traitement():
         nd = nd.append({"dpt": "Hors Région IdF", "new_dc": deaths}, ignore_index=True)
 
         result = pd.merge(result, nd, on = "dpt")
-        dict={}
-        for i in result.columns[1:]:
-            dict[i]=int
-        result=result.astype(dict)
-        for i in result.index[:8]:
-                result.at[i, "dpt"]=int(result.at[i,"dpt"])
-        result["new_dc"] =  result["nb_dc"] - result["new_dc"]
+
 
         result.to_excel(self.path+"sivic_dpt.xlsx", index=False)
 
@@ -189,9 +183,16 @@ class Traitement():
         df=df[df["DEP"].isin(self.DEP_IDF)]
         df = df.rename(columns={"ETABLISSEMENT":"somatique_etablissement_actuel","DEP":"dpt"})
 
-
-
         df.to_excel(self.path+"sivic_es.xlsx", index=False)
+        result=result.fillna(0)
+        df=df.fillna(0)
+        dict = {}
+        for i in result.columns[1:]:
+            dict[i] = int
+        result = result.astype(dict)
+        for i in result.index[:8]:
+            result.at[i, "dpt"] = int(result.at[i, "dpt"])
+        result["new_dc"] = result["nb_dc"] - result["new_dc"]
 
         return result, df
 
