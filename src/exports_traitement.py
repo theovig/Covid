@@ -172,7 +172,8 @@ class Traitement():
         df2 = df2.groupby(["ETABLISSEMENT", "DEP"], as_index=False).agg(
             {c: "sum" for c in ["nb_rea2", "nb_hc2", "nb_ssr2", "nb_psy2", "nb_dc2"]})
 
-        df = pd.merge(df, df2, on = ["ETABLISSEMENT","DEP"], how="left")
+        df = pd.merge(df, df2, on = ["ETABLISSEMENT","DEP"], how="outer")
+        df = df.fillna(0)
         df["new_rea"] = df["nb_rea"]- df["nb_rea2"]
         df["new_hc"] = df["nb_hc"] - df["nb_hc2"]
         df["new_ssr"] = df["nb_ssr"] - df["nb_ssr2"]
